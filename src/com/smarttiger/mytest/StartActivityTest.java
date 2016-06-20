@@ -12,8 +12,8 @@ public class StartActivityTest {
 	public StartActivityTest(MainActivity main) {
 		this.main = main;
 
-		main.showLog("¹ÒÔØ---------------¿ªÆôÈı·½Activity¹¦ÄÜ");
-		main.showLog("¸ñÊ½: com.test.testActivity »òÕß °üÃû+»Ø³µ+ÀàÃû");
+		main.showLog("æŒ‚è½½---------------å¼€å¯ä¸‰æ–¹ActivityåŠŸèƒ½");
+		main.showLog("æ ¼å¼: com.test.testActivity æˆ–è€… åŒ…å+å›è½¦+ç±»å");
 	}
 	
 	public boolean onClick(String text) {

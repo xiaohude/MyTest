@@ -9,15 +9,15 @@ public class Help {
 	}
 	
 	public void showHelp() {
-		main.showLog("---------------------------------Ä¿Ç°Ö§³Ö---------------------------------");
-		main.showLog("-help ÏÔÊ¾°ïÖú");
-		main.showLog("-clean  Çå¿Õlog");
-		main.showLog("1.Õğ¶¯Æ÷²ÎÊı²âÊÔ:");
-		main.showLog("¸ñÊ½: [75,50,75,50](-1) »òÕß 1000");
-		main.showLog("2.¿ªÆôÈı·½Activity:");
-		main.showLog("¸ñÊ½: com.android.testActivity »òÕß °üÃû+»Ø³µ+ÀàÃû");
-		main.showLog("3.»ñÈ¡±¾»úÁªÏµÈË");
-		main.showLog("¸ñÊ½: -allphone¡¢-me»òÒªËÑË÷µÄÁªÏµÈËĞÅÏ¢ ");
+		main.showLog("---------------------------------ç›®å‰æ”¯æŒ---------------------------------");
+		main.showLog("-help æ˜¾ç¤ºå¸®åŠ©");
+		main.showLog("-clean  æ¸…ç©ºlog");
+		main.showLog("1.éœ‡åŠ¨å™¨å‚æ•°æµ‹è¯•:");
+		main.showLog("æ ¼å¼: [75,50,75,50](-1) æˆ–è€… 1000");
+		main.showLog("2.å¼€å¯ä¸‰æ–¹Activity:");
+		main.showLog("æ ¼å¼: com.android.testActivity æˆ–è€… åŒ…å+å›è½¦+ç±»å");
+		main.showLog("3.è·å–æœ¬æœºè”ç³»äºº");
+		main.showLog("æ ¼å¼: -allphoneã€-meæˆ–è¦æœç´¢çš„è”ç³»äººä¿¡æ¯ ");
 		
 	}
 	

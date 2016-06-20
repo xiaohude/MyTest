@@ -56,10 +56,10 @@ public class MainActivity extends Activity {
 	}
 	Handler handler;
 	private void scrollDown() {
-		//ÒòÎªAndroidºÜ¶àº¯Êı¶¼ÊÇ»ùÓÚÏûÏ¢¶ÓÁĞÀ´Í¬²½£¬ËùÒÔĞèÒªÒì²½²Ù×÷£¬
-		//addViewÍêÖ®ºó£¬²»µÈÓÚÂíÉÏ¾Í»áÏÔÊ¾£¬¶øÊÇÔÚ¶ÓÁĞÖĞµÈ´ı´¦Àí£¬ËäÈ»ºÜ¿ì£¬µ«ÊÇÈç¹ûÁ¢¼´µ÷ÓÃfullScroll£¬ view¿ÉÄÜ»¹Ã»ÓĞÏÔÊ¾³öÀ´£¬
-		//ËùÒÔ»áÊ§°Ü£¬»òÕßÃ»ÓĞµ½×îµÍ¶Ë
-		//Ó¦¸ÃÍ¨¹ıhandlerÔÚĞÂÏß³ÌÖĞ¸üĞÂ
+		//å› ä¸ºAndroidå¾ˆå¤šå‡½æ•°éƒ½æ˜¯åŸºäºæ¶ˆæ¯é˜Ÿåˆ—æ¥åŒæ­¥ï¼Œæ‰€ä»¥éœ€è¦å¼‚æ­¥æ“ä½œï¼Œ
+		//addViewå®Œä¹‹åï¼Œä¸ç­‰äºé©¬ä¸Šå°±ä¼šæ˜¾ç¤ºï¼Œè€Œæ˜¯åœ¨é˜Ÿåˆ—ä¸­ç­‰å¾…å¤„ç†ï¼Œè™½ç„¶å¾ˆå¿«ï¼Œä½†æ˜¯å¦‚æœç«‹å³è°ƒç”¨fullScrollï¼Œ viewå¯èƒ½è¿˜æ²¡æœ‰æ˜¾ç¤ºå‡ºæ¥ï¼Œ
+		//æ‰€ä»¥ä¼šå¤±è´¥ï¼Œæˆ–è€…æ²¡æœ‰åˆ°æœ€ä½ç«¯
+		//åº”è¯¥é€šè¿‡handleråœ¨æ–°çº¿ç¨‹ä¸­æ›´æ–°
 		handler.post(new Runnable() {  
 		    @Override  
 		    public void run() {  
@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
 			if(startActivityTest == null || !startActivityTest.onClick(text))
 			if(getContactsTest ==null || !getContactsTest.onClick(text))
 			{
-				showLog("¸ñÊ½´íÎó£¡");
+				showLog("æ ¼å¼é”™è¯¯ï¼");
 				help.showHelp();
 			}
 			

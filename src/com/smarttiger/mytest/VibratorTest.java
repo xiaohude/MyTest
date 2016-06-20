@@ -10,8 +10,8 @@ public class VibratorTest {
 	
 	private MainActivity main;
 
-	/** ÏÂÃæ´úÂëÎª²âÊÔÊÖ»úÕğ¶¯²ÎÊıµÄ´úÂë */
-	//¼ÇµÃ<uses-permission android:name="android.permission.VIBRATE" />
+	/** ä¸‹é¢ä»£ç ä¸ºæµ‹è¯•æ‰‹æœºéœ‡åŠ¨å‚æ•°çš„ä»£ç  */
+	//è®°å¾—<uses-permission android:name="android.permission.VIBRATE" />
 	private Vibrator vibrator;
 	private long[] pattern;
 	private int repeat;
@@ -21,8 +21,8 @@ public class VibratorTest {
 		this.main = main;
 
 		vibrator = (Vibrator) main.getSystemService(Service.VIBRATOR_SERVICE);
-		main.showLog("¹ÒÔØ---------------²âÊÔÕğ¶¯Æ÷²ÎÊıĞ§¹û");
-		main.showLog("¸ñÊ½: [75,50,75,50](-1) »òÕß 1000");
+		main.showLog("æŒ‚è½½---------------æµ‹è¯•éœ‡åŠ¨å™¨å‚æ•°æ•ˆæœ");
+		main.showLog("æ ¼å¼: [75,50,75,50](-1) æˆ–è€… 1000");
 	}
 	
 	
@@ -41,8 +41,8 @@ public class VibratorTest {
 	}
 	
 	public void showSample() {
-		main.showLog("¸ñÊ½´íÎó£¡");
-		main.showLog("²âÊÔ¸ñÊ½Îª [75,50,75,50](-1) »òÕß 1000");
+		main.showLog("æ ¼å¼é”™è¯¯ï¼");
+		main.showLog("æµ‹è¯•æ ¼å¼ä¸º [75,50,75,50](-1) æˆ–è€… 1000");
 	}
 	
 	public void cancel() {
@@ -50,7 +50,7 @@ public class VibratorTest {
 	}
 	
 	
-	/** ¸ñÊ½Îª [75,50,75,50](-1) »òÕß 1000 */
+	/** æ ¼å¼ä¸º [75,50,75,50](-1) æˆ–è€… 1000 */
 	private boolean decodeVibratorString(String text) {
 		
 		
@@ -67,10 +67,10 @@ public class VibratorTest {
 		}
 		
 		try {
-		    Pattern p = Pattern.compile("\\[.*?\\]");// ²éÕÒ¹æÔò¹«Ê½ÖĞ·½À¨ºÅÒÔÄÚµÄ×Ö·û
+		    Pattern p = Pattern.compile("\\[.*?\\]");// æŸ¥æ‰¾è§„åˆ™å…¬å¼ä¸­æ–¹æ‹¬å·ä»¥å†…çš„å­—ç¬¦
 		    Matcher m = p.matcher(text);
-		    if (m.find()) {// ±éÀúÕÒµ½µÄËùÓĞ·½À¨ºÅ
-			    String param = m.group().replaceAll("\\[|\\]", "");// È¥µôÀ¨ºÅ
+		    if (m.find()) {// éå†æ‰¾åˆ°çš„æ‰€æœ‰æ–¹æ‹¬å·
+			    String param = m.group().replaceAll("\\[|\\]", "");// å»æ‰æ‹¬å·
 			    main.showLog(param);
 			    String[] paramS = param.split(",");
 			    pattern = new long[paramS.length];
@@ -81,10 +81,10 @@ public class VibratorTest {
 		    } else {
 		    	return false;
 		    }
-		    p = Pattern.compile("\\(.*?\\)");// ²éÕÒ¹æÔò¹«Ê½ÖĞÀ¨ºÅÒÔÄÚµÄ×Ö·û
+		    p = Pattern.compile("\\(.*?\\)");// æŸ¥æ‰¾è§„åˆ™å…¬å¼ä¸­æ‹¬å·ä»¥å†…çš„å­—ç¬¦
 		    m = p.matcher(text);
-		    if (m.find()) {// ±éÀúÕÒµ½µÄËùÓĞÀ¨ºÅ
-			    String param = m.group().replaceAll("\\(|\\)", "");// È¥µôÀ¨ºÅ
+		    if (m.find()) {// éå†æ‰¾åˆ°çš„æ‰€æœ‰æ‹¬å·
+			    String param = m.group().replaceAll("\\(|\\)", "");// å»æ‰æ‹¬å·
 			    repeat = new Integer(param);
 			    main.showLog("repeat=="+repeat);
 		    } else {

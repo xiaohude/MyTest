@@ -63,8 +63,8 @@ public class GetContactsTest {
 		// TODO Auto-generated constructor stub
 		this.main = main;
 
-		main.showLog("¹ÒÔØ---------------»ñÈ¡±¾µØÁªÏµÈË¹¦ÄÜ");
-		main.showLog("¸ñÊ½: -allphone¡¢-me»òÒªËÑË÷µÄÁªÏµÈËĞÅÏ¢ ");
+		main.showLog("æŒ‚è½½---------------è·å–æœ¬åœ°è”ç³»äººåŠŸèƒ½");
+		main.showLog("æ ¼å¼: -allphoneã€-meæˆ–è¦æœç´¢çš„è”ç³»äººä¿¡æ¯ ");
 	}
 	
 	public boolean onClick(String text)
@@ -82,7 +82,7 @@ public class GetContactsTest {
 	}
 
 	
-	//»ñÈ¡¡®ÎÒ¡¯µÄĞÅÏ¢¡£
+	//è·å–â€˜æˆ‘â€™çš„ä¿¡æ¯ã€‚
 	private void getProfileContacts() {
 		
 		Cursor cursor = main.getContentResolver().query(Profile.CONTENT_URI,
@@ -122,7 +122,7 @@ public class GetContactsTest {
 				contact.displayName = cursor.getString(CONTACT_DISPLAY_NAME);
 				contact.number = cursor.getString(CONTACT_NUMBER);
 				contact.photoUri = cursor.getString(CONTACT_PHOTO_URI);
-				main.showLog("ĞÕÃû£º"+contact.displayName+"--µç»°£º"+contact.number);
+				main.showLog("å§“åï¼š"+contact.displayName+"--ç”µè¯ï¼š"+contact.number);
 			}
 		}
 	}
@@ -138,7 +138,7 @@ public class GetContactsTest {
 				contact.displayName = cursor.getString(CONTACT_DISPLAY_NAME);
 				contact.number = cursor.getString(CONTACT_NUMBER);
 				contact.photoUri = cursor.getString(CONTACT_PHOTO_URI);
-				main.showLog("ĞÕÃû£º"+contact.displayName+"--µç»°£º"+contact.number);
+				main.showLog("å§“åï¼š"+contact.displayName+"--ç”µè¯ï¼š"+contact.number);
 			}
 		}
 	}
