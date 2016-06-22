@@ -32,10 +32,8 @@ public class MainActivity extends Activity {
 		
 		help = new Help(this);
 		
-		vibratorTest = new VibratorTest(this);
-		startActivityTest = new StartActivityTest(this);
-		getContactsTest = new GetContactsTest(this);
 		
+		mountAll();
 		
 	}
 	
@@ -68,6 +66,32 @@ public class MainActivity extends Activity {
 		});
 	}
 	
+	/** 挂载所有模块 */
+	private void mountAll() {
+		vibratorTest = new VibratorTest(this);
+		startActivityTest = new StartActivityTest(this);
+		getContactsTest = new GetContactsTest(this);
+	}
+	/** 清空所有模块 */
+	private void cleanAll() {
+		vibratorTest = null;
+		startActivityTest = null;
+		getContactsTest = null;
+		showLog("清空所有挂载");
+	}
+	private void mount(String text) {
+		String s = text.substring(text.indexOf(" ")+1);
+		if(s.equals("all"))
+			mountAll();
+		else if(s.equals("clean"))
+			cleanAll();
+		else if(s.equals("vibrator"))
+			vibratorTest = new VibratorTest(this);
+		else if(s.equals("startActivity"))
+			startActivityTest = new StartActivityTest(this);
+		else if(s.equals("getContacts"))
+			getContactsTest = new GetContactsTest(this);
+	}
 	
 	class TestOnClickListener implements OnClickListener {
 
@@ -85,6 +109,10 @@ public class MainActivity extends Activity {
 				if(text.equals("-clean")) {
 					logString = "";
 					showLog("");
+					return;
+				}
+				if(text.startsWith("-mount")) {
+					mount(text);
 					return;
 				}
 			}

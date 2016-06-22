@@ -64,6 +64,7 @@ public class GetContactsTest {
 		this.main = main;
 
 		main.showLog("挂载---------------获取本地联系人功能");
+		main.showLog("命令: -mount getContacts");
 		main.showLog("格式: -allphone、-me或要搜索的联系人信息 ");
 	}
 	

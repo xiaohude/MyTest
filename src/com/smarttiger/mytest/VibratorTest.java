@@ -22,6 +22,7 @@ public class VibratorTest {
 
 		vibrator = (Vibrator) main.getSystemService(Service.VIBRATOR_SERVICE);
 		main.showLog("挂载---------------测试震动器参数效果");
+		main.showLog("命令: -mount vibrator");
 		main.showLog("格式: [75,50,75,50](-1) 或者 1000");
 	}
 	

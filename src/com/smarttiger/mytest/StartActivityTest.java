@@ -13,6 +13,7 @@ public class StartActivityTest {
 		this.main = main;
 
 		main.showLog("挂载---------------开启三方Activity功能");
+		main.showLog("命令: -mount startActivity");
 		main.showLog("格式: com.test.testActivity 或者 包名+回车+类名");
 	}
 	
