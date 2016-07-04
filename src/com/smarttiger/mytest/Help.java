@@ -19,8 +19,10 @@ public class Help {
 		main.showLog("格式: [75,50,75,50](-1) 或者 1000");
 		main.showLog("2.开启三方Activity:");
 		main.showLog("格式: com.android.testActivity 或者 包名+回车+类名");
-		main.showLog("3.获取本机联系人");
+		main.showLog("3.获取本机联系人:");
 		main.showLog("格式: -allphone、-me或要搜索的联系人信息 ");
+		main.showLog("4.调试三方App参数:");
+		main.showLog("格式: isTest、hasPadding");
 		
 	}
 	

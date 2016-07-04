@@ -2,10 +2,14 @@ package com.smarttiger.mytest;
 
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLayoutChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
@@ -23,6 +27,7 @@ public class MainActivity extends Activity {
 	private VibratorTest vibratorTest;
 	private StartActivityTest startActivityTest;
 	private GetContactsTest getContactsTest;
+	private DebugTest debugTest;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +37,9 @@ public class MainActivity extends Activity {
 		
 		help = new Help(this);
 		
+//		mountAll();
 		
-		mountAll();
-		
+		debugTest = new DebugTest(this);
 	}
 	
 	private void initView() {
@@ -45,6 +50,18 @@ public class MainActivity extends Activity {
 		handler = new Handler();
 		
 		testButton.setOnClickListener(new TestOnClickListener());
+		logText.addOnLayoutChangeListener(new OnLayoutChangeListener() {
+			@Override
+			public void onLayoutChange(View v, int left, int top, int right,
+					int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+				//解决弹出键盘后，logText被遮挡没有自动滑倒最低端。
+				scrollDown();
+			}
+		});
+	}
+	
+	public void onCleanEdit(View view) {
+		editText.setText("");
 	}
 	
 	public void showLog(String log) {
@@ -71,12 +88,14 @@ public class MainActivity extends Activity {
 		vibratorTest = new VibratorTest(this);
 		startActivityTest = new StartActivityTest(this);
 		getContactsTest = new GetContactsTest(this);
+		debugTest = new DebugTest(this);
 	}
 	/** 清空所有模块 */
 	private void cleanAll() {
 		vibratorTest = null;
 		startActivityTest = null;
 		getContactsTest = null;
+		debugTest = null;
 		showLog("清空所有挂载");
 	}
 	private void mount(String text) {
@@ -91,6 +110,8 @@ public class MainActivity extends Activity {
 			startActivityTest = new StartActivityTest(this);
 		else if(s.equals("getContacts"))
 			getContactsTest = new GetContactsTest(this);
+		else if(s.equals("debugTest"))
+			debugTest = new DebugTest(this);
 	}
 	
 	class TestOnClickListener implements OnClickListener {
@@ -120,10 +141,12 @@ public class MainActivity extends Activity {
 			if(vibratorTest == null || !vibratorTest.onClick(text))
 			if(startActivityTest == null || !startActivityTest.onClick(text))
 			if(getContactsTest ==null || !getContactsTest.onClick(text))
+			if(debugTest ==null || !debugTest.onClick(text))
 			{
 				showLog("格式错误！");
 				help.showHelp();
 			}
+			
 			
 		}
 		

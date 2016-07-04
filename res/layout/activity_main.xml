@@ -9,12 +9,28 @@
     android:orientation="vertical"
     tools:context="com.smarttiger.mytest.MainActivity" >
 
-    <EditText 
-        android:id="@+id/edit_text"
+    <RelativeLayout 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="输入测试数据"
-        />
+        >
+        <EditText 
+	        android:id="@+id/edit_text"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:hint="输入测试数据"
+	        />
+        <ImageView
+	        android:id="@+id/edit_text_clean"
+	        android:layout_height="30dp"
+	        android:layout_width="30dp"
+	        android:layout_margin="7dp"
+	        android:src="@drawable/x_ic_close_dk"
+	        android:clickable="true"
+	        android:onClick="onCleanEdit"
+	        android:background="?android:attr/selectableItemBackground"
+	        android:tint="#737373"
+	        android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
     
     <Button 
         android:id="@+id/test_button"
