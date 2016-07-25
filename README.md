@@ -7,13 +7,17 @@
 -mount clean  清空所有挂载<br>
 -mount xxxx   挂载单个模块<br>
 1.震动器参数测试:<br>
+-mount vibrator<br>
 格式: \[75,50,75,50\]\(-1\) 或者 1000<br>
 2.开启三方Activity:<br>
+-mount startActivity<br>
 格式: com.android.testActivity 或者 包名+回车+类名<br>
 3.获取本机联系人<br>
+-mount getContacts<br>
 格式: -allphone、-me或要搜索的联系人信息 <br>
 4.调试三方App参数:<br>
-格式: isTest、hasPadding<br>
+-mount debugTest<br>
+格式: isTest、hasPadding、intTest66<br>
 
 截图：
 ![截图](./ScreenShots/main.png)
