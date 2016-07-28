@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
 //		mountAll();
 		
 		debugTest = new DebugTest(this);
+		
 	}
 	
 	private void initView() {
@@ -145,6 +146,8 @@ public class MainActivity extends Activity {
 			{
 				showLog("格式错误！");
 				help.showHelp();
+				
+//				ShowLongDialog.show(MainActivity.this);
 			}
 			
 			

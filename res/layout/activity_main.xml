@@ -17,7 +17,7 @@
 	        android:id="@+id/edit_text"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:hint="输入测试数据"
+	        android:hint="输入测试数据  (-help)"
 	        />
         <ImageView
 	        android:id="@+id/edit_text_clean"
