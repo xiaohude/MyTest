@@ -9,6 +9,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.SearchSnippets;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 
@@ -138,6 +139,7 @@ public class GetContactsTest {
 		Cursor cursor = main.getContentResolver().query(uri, FILTER_PROJECTION_PRIMARY, null, null, Contacts.SORT_KEY_PRIMARY);
 	
 		if (cursor != null) {
+			SpannableStringBuilder spanTextBuilder =  new SpannableStringBuilder();
 			while (cursor.moveToNext()) {
 				Contact contact = new Contact();
 				contact.contactId = cursor.getLong(CONTACT_ID);
@@ -155,9 +157,12 @@ public class GetContactsTest {
 				
 		    	SpannableString spanText = new SpannableString(text);
 		    	int star = text.indexOf(filter);
-		    	spanText.setSpan(new ForegroundColorSpan(0xff1499f7), star, star+filter.length(), 0);
-				main.showLog(spanText);
+		    	if(star != -1)
+		    		spanText.setSpan(new ForegroundColorSpan(0xff1499f7), star, star+filter.length(), 0);
+		    	spanTextBuilder.append(spanText);
+		    	spanTextBuilder.append("\n");
 			}
+			main.showLog(spanTextBuilder);
 		}
 	}
 	

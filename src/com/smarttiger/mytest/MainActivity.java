@@ -81,7 +81,7 @@ public class MainActivity extends Activity {
 	
 	private SpannableStringBuilder spanText =  new SpannableStringBuilder();
 	/** 用来显示可变色的文字 */
-	public void showLog(SpannableString log) {
+	public void showLog(SpannableStringBuilder log) {
 		spanText.append(log);
 		spanText.append("\n");
 		logText.setText(spanText);
