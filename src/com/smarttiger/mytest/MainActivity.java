@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLayoutChangeListener;
@@ -39,7 +41,10 @@ public class MainActivity extends Activity {
 		
 //		mountAll();
 		
-		debugTest = new DebugTest(this);
+//		debugTest = new DebugTest(this);
+		
+
+		getContactsTest = new GetContactsTest(this);
 		
 	}
 	
@@ -69,7 +74,22 @@ public class MainActivity extends Activity {
 		logString = logString + log + "\n";
 		logText.setText(logString);
 		scrollDown();
+
+		spanText.append(log);//同步span字符串
+		spanText.append("\n");
 	}
+	
+	private SpannableStringBuilder spanText =  new SpannableStringBuilder();
+	/** 用来显示可变色的文字 */
+	public void showLog(SpannableString log) {
+		spanText.append(log);
+		spanText.append("\n");
+		logText.setText(spanText);
+		scrollDown();
+		
+		logString = logString + log + "\n";//同步普通字符串
+	}
+	
 	Handler handler;
 	private void scrollDown() {
 		//因为Android很多函数都是基于消息队列来同步，所以需要异步操作，

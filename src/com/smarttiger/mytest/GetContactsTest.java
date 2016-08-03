@@ -3,11 +3,14 @@ package com.smarttiger.mytest;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Profile;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.SearchSnippets;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 
 public class GetContactsTest {
 	
@@ -109,7 +112,7 @@ public class GetContactsTest {
 	}
 	
 	
-	
+	//获取所有联系人
 	private void getContacts(String filter) {
 //		String where = Phone.DISPLAY_NAME_PRIMARY + " LIKE '%"+filter+"%'" +  " OR REPLACE(REPLACE("+Phone.NUMBER+",' ',''),'-','') LIKE '%"+filter+"%'";
 		String where = null;
@@ -128,6 +131,8 @@ public class GetContactsTest {
 		}
 	}
 	
+	
+	//搜索联系人
 	private void getFilterContacts(String filter) {
 		Uri uri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI, Uri.encode(filter));
 		Cursor cursor = main.getContentResolver().query(uri, FILTER_PROJECTION_PRIMARY, null, null, Contacts.SORT_KEY_PRIMARY);
@@ -139,9 +144,55 @@ public class GetContactsTest {
 				contact.displayName = cursor.getString(CONTACT_DISPLAY_NAME);
 				contact.number = cursor.getString(CONTACT_NUMBER);
 				contact.photoUri = cursor.getString(CONTACT_PHOTO_URI);
-				main.showLog("姓名："+contact.displayName+"--电话："+contact.number);
+
+				//因为使用Contacts.CONTENT_FILTER_URI时有时候SNIPPET返回的是空
+				if (TextUtils.isEmpty(contact.number)) {
+					contact.number = queryPhoneNumberForContact(contact.contactId);
+				}
+				
+				String text = "姓名："+contact.displayName+"--电话："+contact.number;
+//				main.showLog(text);
+				
+		    	SpannableString spanText = new SpannableString(text);
+		    	int star = text.indexOf(filter);
+		    	spanText.setSpan(new ForegroundColorSpan(0xff1499f7), star, star+filter.length(), 0);
+				main.showLog(spanText);
 			}
 		}
+	}
+	
+	/**
+	 * 根据contactId查询获取其一个号码
+	 * @param contactId
+	 * @return 电话号码
+	 */
+	private String queryPhoneNumberForContact(long contactId) {
+		Cursor cursor = null;
+		try {
+			String[] proj = new String[] {
+					Phone.NUMBER
+			};
+			String where = Data.CONTACT_ID + "=? AND " + Data.MIMETYPE + "='" + Phone.CONTENT_ITEM_TYPE + "'";
+			cursor = main.getContentResolver().query(Data.CONTENT_URI, proj, where, new String[] {String.valueOf(contactId)}, null);
+			if (cursor != null && cursor.moveToFirst()) {
+				String number = cursor.getString(0);
+				if (!TextUtils.isEmpty(number)) {
+					return number;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (cursor != null) {
+				try {
+					cursor.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return "";
 	}
 	
 	public class Contact {
