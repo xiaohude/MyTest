@@ -1,5 +1,7 @@
 package com.smarttiger.mytest;
 
+import com.smarttiger.gethighlightacronymlib.FormatUtils;
+
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
@@ -136,6 +138,8 @@ public class GetContactsTest {
 	//搜索联系人
 	private void getFilterContacts(String filter) {
 		Uri uri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI, Uri.encode(filter));
+//		uri = uri.buildUpon().appendQueryParameter(SearchSnippets.DEFERRED_SNIPPETING_KEY, "1").build();
+		
 		Cursor cursor = main.getContentResolver().query(uri, FILTER_PROJECTION_PRIMARY, null, null, Contacts.SORT_KEY_PRIMARY);
 	
 		if (cursor != null) {
@@ -152,13 +156,17 @@ public class GetContactsTest {
 					contact.number = queryPhoneNumberForContact(contact.contactId);
 				}
 				
-				String text = "姓名："+contact.displayName+"--电话："+contact.number;
+//				String text = "姓名："+contact.displayName+"--电话："+contact.number;
+				String text = contact.displayName+"----"+contact.number;
 //				main.showLog(text);
 				
 		    	SpannableString spanText = new SpannableString(text);
-		    	int star = text.indexOf(filter);
+//		    	int star = text.indexOf(filter);
+		    	int star = FormatUtils.indexOfNameForSort(text, filter);
 		    	if(star != -1)
 		    		spanText.setSpan(new ForegroundColorSpan(0xff1499f7), star, star+filter.length(), 0);
+		    	
+		    	
 		    	spanTextBuilder.append(spanText);
 		    	spanTextBuilder.append("\n");
 			}
