@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
 	private EditText editText;
 	private Button testButton;
 	private ScrollView scrollView;
-	private TextView logText;
+	public TextView logText;
 	private String logString = "";
 	
 	private Help help;
@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
 	private StartActivityTest startActivityTest;
 	private GetContactsTest getContactsTest;
 	private DebugTest debugTest;
+	private PrimeNumber primeNumber;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +43,15 @@ public class MainActivity extends Activity {
 //		mountAll();
 		
 //		debugTest = new DebugTest(this);
+
+//		startActivityTest = new StartActivityTest(this);
+//		startActivityTest.onClick("com.android.settings.DevelopmentSettings");
 		
 
 		getContactsTest = new GetContactsTest(this);
+		
+		
+//		primeNumber = new PrimeNumber(this);
 		
 	}
 	
@@ -77,6 +84,18 @@ public class MainActivity extends Activity {
 
 		spanText.append(log);//同步span字符串
 		spanText.append("\n");
+		logBuilder.append(log);//同步logBuilder字符串
+		logBuilder.append("\n");
+	}
+	
+	private StringBuilder logBuilder =  new StringBuilder();
+	public void showLog(StringBuilder log) {
+		logBuilder.append(log);
+		logBuilder.append("\n");
+		logText.setText(logBuilder);
+		scrollDown();
+		
+		logString = logString + log + "\n";//同步普通字符串
 	}
 	
 	private SpannableStringBuilder spanText =  new SpannableStringBuilder();
@@ -110,6 +129,7 @@ public class MainActivity extends Activity {
 		startActivityTest = new StartActivityTest(this);
 		getContactsTest = new GetContactsTest(this);
 		debugTest = new DebugTest(this);
+		primeNumber = new PrimeNumber(this);
 	}
 	/** 清空所有模块 */
 	private void cleanAll() {
@@ -117,6 +137,7 @@ public class MainActivity extends Activity {
 		startActivityTest = null;
 		getContactsTest = null;
 		debugTest = null;
+		primeNumber = null;
 		showLog("清空所有挂载");
 	}
 	private void mount(String text) {
@@ -133,6 +154,8 @@ public class MainActivity extends Activity {
 			getContactsTest = new GetContactsTest(this);
 		else if(s.equals("debugTest"))
 			debugTest = new DebugTest(this);
+		else if(s.equals("primeNumber"))
+			primeNumber = new PrimeNumber(this);
 	}
 	
 	class TestOnClickListener implements OnClickListener {
@@ -163,6 +186,7 @@ public class MainActivity extends Activity {
 			if(startActivityTest == null || !startActivityTest.onClick(text))
 			if(getContactsTest ==null || !getContactsTest.onClick(text))
 			if(debugTest ==null || !debugTest.onClick(text))
+			if(primeNumber ==null || !primeNumber.onClick(text))
 			{
 				showLog("格式错误！");
 				help.showHelp();
