@@ -27,6 +27,9 @@ public class Help {
 		main.showLog("4.调试三方App参数:");
 		main.showLog("命令：-mount debugTest");
 		main.showLog("格式：isTest、hasPadding、intTest44");
+		main.showLog("5.获取素数功能:");
+		main.showLog("命令: -mount primeNumber");
+		main.showLog("格式: -100（生成小于100的素数）、50（生成50个素数） ");
 		
 	}
 	

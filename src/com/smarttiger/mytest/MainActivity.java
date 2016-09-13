@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLayoutChangeListener;
@@ -48,10 +49,10 @@ public class MainActivity extends Activity {
 //		startActivityTest.onClick("com.android.settings.DevelopmentSettings");
 		
 
-		getContactsTest = new GetContactsTest(this);
+//		getContactsTest = new GetContactsTest(this);
 		
 		
-//		primeNumber = new PrimeNumber(this);
+		primeNumber = new PrimeNumber(this);
 		
 	}
 	
@@ -138,6 +139,7 @@ public class MainActivity extends Activity {
 		getContactsTest = null;
 		debugTest = null;
 		primeNumber = null;
+		logText.setGravity(Gravity.LEFT);//还原为左对其
 		showLog("清空所有挂载");
 	}
 	private void mount(String text) {

@@ -11,6 +11,7 @@ import android.view.Gravity;
 public class PrimeNumber {
 	
 	private MainActivity main ;
+	private int base = 2;//需要转换的进制
 
 	public PrimeNumber(MainActivity main) {
 		this.main = main;
@@ -28,6 +29,8 @@ public class PrimeNumber {
 		
 		if(isNumeric(text))
 			printPrimeNumbers(Integer.valueOf(text));
+		else if (text.startsWith("-"))
+			printLessPrimeNumbers(Integer.valueOf(text.substring(1)));
 		return true;
 	}
 	
@@ -42,7 +45,7 @@ public class PrimeNumber {
 	}
 
     //生成一个随机素数
-	private void printPrimeNumbers() {
+	private void printPrimeNumber() {
 		Random rnd = new Random(new Date().getTime());
 //	    System.out.println(BigInteger.probablePrime(1024, rnd));//生成一个1024位的随机素数
 	    main.showLog(""+BigInteger.probablePrime(9, rnd));
@@ -50,6 +53,10 @@ public class PrimeNumber {
 	    printPrimeNumbers(100);
 	}
 	
+	/**
+	 * 生成固定个数素数。
+	 * @param numberOfPrimes 生成素数的个数
+	 */
 	private void printPrimeNumbers(int numberOfPrimes) {
         int count = 0;
         int number = 2;
@@ -59,12 +66,30 @@ public class PrimeNumber {
             if (isPrime(number)) {
                 count++;
                 primeList.add(number);
-                numbers.append(number + "--" + Integer.toString(number, 5) +" \n");
+                numbers.append(number + "--" + Integer.toString(number, base) +" \n");
             }
             number++;    
         }
         main.showLog(numbers);
     }
+	
+	/**
+	 * 输出小于maxNumber的所有素数
+	 * @param maxNumber 
+	 */
+	private void printLessPrimeNumbers(int maxNumber) {
+        int number = 2;
+        ArrayList<Integer> primeList = new ArrayList<Integer>();
+        StringBuilder numbers = new StringBuilder();
+        while (number < maxNumber) {
+            if (isPrime(number)) {
+                primeList.add(number);
+                numbers.append(number + "--" + Integer.toString(number, base) +" \n");
+            }
+            number++;    
+        }
+        main.showLog(numbers);
+	}
  
 	//判断是否为素数
 	private boolean isPrime(int number) {
