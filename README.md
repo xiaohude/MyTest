@@ -18,6 +18,9 @@
 4.调试三方App参数:<br>
 -mount debugTest<br>
 格式: isTest、hasPadding、intTest66<br>
+5.获取素数功能:<br>
+-mount primeNumber<br>
+格式: -100（生成小于100的素数）、50（生成50个素数）<br>
 
 截图：
 ![截图](./ScreenShots/main.png)
