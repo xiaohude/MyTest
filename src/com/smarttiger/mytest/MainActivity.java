@@ -3,6 +3,8 @@ package com.smarttiger.mytest;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ public class MainActivity extends Activity {
 	private GetContactsTest getContactsTest;
 	private DebugTest debugTest;
 	private PrimeNumber primeNumber;
+	private BatteryBroadcastReciver receiver;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +51,14 @@ public class MainActivity extends Activity {
 //		startActivityTest = new StartActivityTest(this);
 //		startActivityTest.onClick("com.android.settings.DevelopmentSettings");
 		
-
-//		getContactsTest = new GetContactsTest(this);
+		getContactsTest = new GetContactsTest(this);
 		
+//		primeNumber = new PrimeNumber(this);
 		
-		primeNumber = new PrimeNumber(this);
-		
+//		reciver=new BatteryBroadcastReciver(this);  
+//		//创建一个过滤器  
+//		IntentFilter intentFilter=new IntentFilter(Intent.ACTION_BATTERY_CHANGED);  
+//		registerReceiver(reciver, intentFilter);
 	}
 	
 	private void initView() {
@@ -211,4 +216,10 @@ public class MainActivity extends Activity {
 			vibratorTest.cancel();
 	}
 	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+//		unregisterReceiver(receiver);
+	}
 }
