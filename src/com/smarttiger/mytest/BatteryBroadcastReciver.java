@@ -43,11 +43,12 @@ public class BatteryBroadcastReciver extends BroadcastReceiver {
             	//提示用户
             	MediaPlayer mp = MediaPlayer.create(context, R.raw.nokia_lesspower);
                 mp.start();//开始播放  
+            	i = 0;
                 mp.setOnCompletionListener(new OnCompletionListener() {
 					@Override
 					public void onCompletion(MediaPlayer mp) {
 						// TODO Auto-generated method stub
-						if (i > 8)
+						if (i > 6)
 							return;
 						i++;
 						mp.start();
@@ -82,19 +83,20 @@ public class BatteryBroadcastReciver extends BroadcastReceiver {
 
     		
             //当电量小于15%时触发
-            if(level <= 100 && status != BatteryManager.BATTERY_STATUS_CHARGING){
+            if(level <= 20 && status != BatteryManager.BATTERY_STATUS_CHARGING){
                 Toast.makeText(context, "当前电量已小于15%",Toast.LENGTH_LONG).show();
                 if(hour >= 9 && hour < 22) {
                 	//提示用户
                 	
                 	MediaPlayer mp = MediaPlayer.create(context, R.raw.nokia_lesspower);
                     mp.start();//开始播放  
+                	i = 0;
                     
                     mp.setOnCompletionListener(new OnCompletionListener() {
 						@Override
 						public void onCompletion(MediaPlayer mp) {
 							// TODO Auto-generated method stub
-							if (i > 8)
+							if (i > 6)
 								return;
 							i++;
 							mp.start();
@@ -104,6 +106,20 @@ public class BatteryBroadcastReciver extends BroadcastReceiver {
             }
             
         }
+		
+		
+		//开机自启动监听
+		if(intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+			
+			
+			Intent service = new Intent(context, BatteryService.class);  
+            context.startService(service);  
+
+            Toast.makeText(context, "低电量监听启动",Toast.LENGTH_LONG).show();
+			
+		}
+		
+		
 	}
 
 }
