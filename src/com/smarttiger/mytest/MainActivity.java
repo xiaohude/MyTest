@@ -3,18 +3,15 @@ package com.smarttiger.mytest;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLayoutChangeListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
@@ -35,6 +32,7 @@ public class MainActivity extends Activity {
 	private DebugTest debugTest;
 	private PrimeNumber primeNumber;
 	private BatteryBroadcastReciver receiver;
+	private WebViewModule webViewModule;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +41,13 @@ public class MainActivity extends Activity {
 		initView();
 		
 		help = new Help(this);
+
+		WindowManager wm = this.getWindowManager();
+	    int width = wm.getDefaultDisplay().getWidth();
+	    int height = wm.getDefaultDisplay().getHeight();
+	    float dpi = getScreenDensity(this);
+	    showLog("width===="+width+"---height===="+height+"----dpi===="+dpi);
+	    showLog("");
 		
 //		mountAll();
 		
@@ -51,16 +56,28 @@ public class MainActivity extends Activity {
 //		startActivityTest = new StartActivityTest(this);
 //		startActivityTest.onClick("com.android.settings.DevelopmentSettings");
 		
-		getContactsTest = new GetContactsTest(this);
+//		getContactsTest = new GetContactsTest(this);
 		
 //		primeNumber = new PrimeNumber(this);
 		
-//		reciver=new BatteryBroadcastReciver(this);  
-//		//创建一个过滤器  
-//		IntentFilter intentFilter=new IntentFilter(Intent.ACTION_BATTERY_CHANGED);  
-//		registerReceiver(reciver, intentFilter);
+//		Intent service = new Intent(this, BatteryService.class);  
+//      this.startService(service);  
+
+		webViewModule = new WebViewModule(this);
 	}
 	
+	/** 获取屏幕密度 */
+    static public float getScreenDensity(Context context) {
+        try {
+            DisplayMetrics dm = new DisplayMetrics();
+            ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay()
+                    .getMetrics(dm);
+            return dm.density;
+        } catch (Exception e) {
+            return DisplayMetrics.DENSITY_DEFAULT;
+        }
+    }
+    
 	private void initView() {
 		editText = (EditText) findViewById(R.id.edit_text);
 		testButton = (Button) findViewById(R.id.test_button);
@@ -136,6 +153,7 @@ public class MainActivity extends Activity {
 		getContactsTest = new GetContactsTest(this);
 		debugTest = new DebugTest(this);
 		primeNumber = new PrimeNumber(this);
+		webViewModule = new WebViewModule(this);
 	}
 	/** 清空所有模块 */
 	private void cleanAll() {
@@ -144,6 +162,7 @@ public class MainActivity extends Activity {
 		getContactsTest = null;
 		debugTest = null;
 		primeNumber = null;
+		webViewModule = null;
 		logText.setGravity(Gravity.LEFT);//还原为左对其
 		showLog("清空所有挂载");
 	}
@@ -163,6 +182,8 @@ public class MainActivity extends Activity {
 			debugTest = new DebugTest(this);
 		else if(s.equals("primeNumber"))
 			primeNumber = new PrimeNumber(this);
+		else if(s.equals("webView"))
+			webViewModule = new WebViewModule(this);
 	}
 	
 	class TestOnClickListener implements OnClickListener {
@@ -170,6 +191,7 @@ public class MainActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			
 			showLog("");
 			
 			String text = editText.getText().toString();
@@ -194,6 +216,7 @@ public class MainActivity extends Activity {
 			if(getContactsTest ==null || !getContactsTest.onClick(text))
 			if(debugTest ==null || !debugTest.onClick(text))
 			if(primeNumber ==null || !primeNumber.onClick(text))
+			if(webViewModule ==null || !webViewModule.onClick(text))
 			{
 				showLog("格式错误！");
 				help.showHelp();

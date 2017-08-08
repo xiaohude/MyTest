@@ -9,7 +9,7 @@ public class Help {
 	}
 	
 	public void showHelp() {
-		main.showLog("---------------------------------目前支持---------------------------------");
+		main.showLog("---------------------------------目前支持----------------------------");
 		main.showLog("-help 显示帮助");
 		main.showLog("-clean  清空log");
 		main.showLog("-mount all    挂载所有模块");
@@ -30,6 +30,9 @@ public class Help {
 		main.showLog("5.获取素数功能:");
 		main.showLog("命令: -mount primeNumber");
 		main.showLog("格式: -100（生成小于100的素数）、50（生成50个素数） ");
+		main.showLog("6.WebView测试模块");
+		main.showLog("命令: -mount webView");
+		main.showLog("格式: https://m.youtube.com/results?q=China");
 		
 	}
 	

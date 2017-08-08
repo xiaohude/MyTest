@@ -64,7 +64,7 @@ public class BatteryBroadcastReciver extends BroadcastReceiver {
             //取得系统总电量
             int total=intent.getIntExtra("scale", 100);
 
-            Toast.makeText(context, "当前电量："+(level*100)/total+"%",Toast.LENGTH_LONG).show();
+//            Toast.makeText(context, "当前电量："+(level*100)/total+"%",Toast.LENGTH_LONG).show();
 //            main.showLog("当前电量："+(level*100)/total+"%");
             
             int status = intent.getIntExtra("status", BatteryManager.BATTERY_STATUS_UNKNOWN);
@@ -84,7 +84,7 @@ public class BatteryBroadcastReciver extends BroadcastReceiver {
     		
             //当电量小于15%时触发
             if(level <= 20 && status != BatteryManager.BATTERY_STATUS_CHARGING){
-                Toast.makeText(context, "当前电量已小于15%",Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "当前电量已小于20%",Toast.LENGTH_LONG).show();
                 if(hour >= 9 && hour < 22) {
                 	//提示用户
                 	

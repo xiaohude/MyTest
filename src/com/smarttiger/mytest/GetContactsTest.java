@@ -138,6 +138,7 @@ public class GetContactsTest {
 	//搜索联系人
 	private void getFilterContacts(String filter) {
 		Uri uri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI, Uri.encode(filter));
+//		Uri uri = Uri.withAppendedPath(Uri.parse("content://com.android.contacts/contacts/exfilter"), Uri.encode(filter));
 //		uri = uri.buildUpon().appendQueryParameter(SearchSnippets.DEFERRED_SNIPPETING_KEY, "1").build();
 		
 		Cursor cursor = main.getContentResolver().query(uri, FILTER_PROJECTION_PRIMARY, null, null, Contacts.SORT_KEY_PRIMARY);

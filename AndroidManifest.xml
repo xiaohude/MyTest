@@ -54,6 +54,14 @@
 		
         <service android:name=".BatteryService" >  
         </service>  
+        
+        
+        <activity
+            android:name=".WebViewActivity"
+            android:hardwareAccelerated="true"
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+    		android:configChanges="keyboardHidden|orientation|screenSize" >
+        </activity>
     </application>
 
 </manifest>
