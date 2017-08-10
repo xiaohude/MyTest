@@ -1,6 +1,8 @@
 package com.smarttiger.mytest;
 
 
+import com.smarttiger.countries.CountryCode2GPS;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ public class MainActivity extends Activity {
 	private PrimeNumber primeNumber;
 	private BatteryBroadcastReciver receiver;
 	private WebViewModule webViewModule;
+	private CountryCode2GPS countryCode2GPS;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +66,12 @@ public class MainActivity extends Activity {
 //		Intent service = new Intent(this, BatteryService.class);  
 //      this.startService(service);  
 
-		webViewModule = new WebViewModule(this);
+//		webViewModule = new WebViewModule(this);
+	    
+	    countryCode2GPS = new CountryCode2GPS(this);
+		
 	}
+	
 	
 	/** 获取屏幕密度 */
     static public float getScreenDensity(Context context) {
@@ -154,6 +161,8 @@ public class MainActivity extends Activity {
 		debugTest = new DebugTest(this);
 		primeNumber = new PrimeNumber(this);
 		webViewModule = new WebViewModule(this);
+		countryCode2GPS = new CountryCode2GPS(this);
+		logText.setGravity(Gravity.LEFT);//还原为左对其
 	}
 	/** 清空所有模块 */
 	private void cleanAll() {
@@ -163,6 +172,7 @@ public class MainActivity extends Activity {
 		debugTest = null;
 		primeNumber = null;
 		webViewModule = null;
+		countryCode2GPS = null;
 		logText.setGravity(Gravity.LEFT);//还原为左对其
 		showLog("清空所有挂载");
 	}
@@ -184,6 +194,8 @@ public class MainActivity extends Activity {
 			primeNumber = new PrimeNumber(this);
 		else if(s.equals("webView"))
 			webViewModule = new WebViewModule(this);
+		else if(s.equals("gps"))
+			countryCode2GPS = new CountryCode2GPS(this);
 	}
 	
 	class TestOnClickListener implements OnClickListener {
@@ -191,7 +203,6 @@ public class MainActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
 			showLog("");
 			
 			String text = editText.getText().toString();
@@ -217,19 +228,16 @@ public class MainActivity extends Activity {
 			if(debugTest ==null || !debugTest.onClick(text))
 			if(primeNumber ==null || !primeNumber.onClick(text))
 			if(webViewModule ==null || !webViewModule.onClick(text))
+			if(countryCode2GPS ==null || !countryCode2GPS.onClick(text))
 			{
 				showLog("格式错误！");
 				help.showHelp();
 				
 //				ShowLongDialog.show(MainActivity.this);
 			}
-			
-			
 		}
-		
 	}
 	
-
 	
 	@Override
 	protected void onStop() {

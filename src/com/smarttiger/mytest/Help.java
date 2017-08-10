@@ -9,7 +9,7 @@ public class Help {
 	}
 	
 	public void showHelp() {
-		main.showLog("---------------------------------目前支持----------------------------");
+		main.showLog("------------------------------- 目前支持 -------------------------------");
 		main.showLog("-help 显示帮助");
 		main.showLog("-clean  清空log");
 		main.showLog("-mount all    挂载所有模块");
@@ -33,6 +33,9 @@ public class Help {
 		main.showLog("6.WebView测试模块");
 		main.showLog("命令: -mount webView");
 		main.showLog("格式: https://m.youtube.com/results?q=China");
+		main.showLog("7.国家码转换国家中心GPS模块");
+		main.showLog("命令: -mount gps");
+		main.showLog("格式: CN、US、IN");
 		
 	}
 	
